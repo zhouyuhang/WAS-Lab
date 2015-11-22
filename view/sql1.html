@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Application Security</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
+ 
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../scripts/styles.css">
+</head>  
+    
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                     
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button> <a class="navbar-brand" href="../index.php">WAP Lab</a>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Start Learning<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Bypass Client Side Control</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">One more separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a href="https://www.linkedin.com/pub/yuhang-zhou/57/a54/859" target="_blank">About Author</a>
+                        </li>
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div> 
+                        <button type="submit" class="btn btn-default">
+                            Submit
+                        </button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>                
+            </nav>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            
+            <ol class="breadcrumb">
+              <li><a href="../index.php">Home</a></li>  
+              <li><a href="../view/sql.html">SQL Injection</a></li>  
+              <li class="active">Lab1: Bypassing a Login(1)</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="bg-info">
+            <p>In this lab, we are going to use some crafted words to bypass this login system.</p>
+            <p>We already know that the administrator has username <b>admin</b>, but we don't know the password.</p>
+            </div>        
+        </div>        
+    </div>
+    
+<div class="row" >
+    <div class="col-md-3" >        
+        <form class='form-horizontal' method='post' action='' id='login_form' style="border:1px solid darkgrey;padding:10px;width:400px">
+            <div class='control-group'>
+            <label class='control-label'>Username :</label>
+                <input type="text" name="username" id="username" class="form-control" required autofocus/></div>
+            <div class='control-group'>
+            <label class='control-label'>Password :</label>
+            <input type="password" name="password" id="password" class="form-control" required/><br>
+            </div>           
+            <div class='control-group'>
+            <div class='controls'>
+              <input name='Submit' type='button' onclick='javascript:login()' value='Log in' class='btn btn-primary'/>            
+            </div></div><br>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Show Hint
+            </button>
+            <div class="collapse" id="collapseExample">
+              <div class="well">
+            <p>In this lab, we are going to use some crafted words to bypass this login system.</p>
+            <p>We already know that the administrator has username <b>admin</b>, but we don't know the password.</p>
+              </div>
+            </div>    
+        </div>
+</div>
+    
+<script>
+function login(){
+        $.ajax({
+            url : '../scripts/php/validation_sql1.php',
+            type : 'POST',
+            data : { user_name:$('#username').val(),password:$('#password').val() },
+        dataType:'json',
+        success : function(data) {             
+          if(data != 0){
+                        //console.log(data);
+                        $("#msgbox").fadeTo(200,1,function()
+                        { 
+                          $(this).html('Log in Successful!');
+                        });
+                        window.location.replace("sql_success1.html");                        
+            }
+            else{
+               $("#msgbox").fadeTo(200,1,function()
+                    { 
+                      $(this).html('Your login details are incorrect, try again.');
+                    });                 
+            }
+        }
+    })     
+};
+    
+
+</script>

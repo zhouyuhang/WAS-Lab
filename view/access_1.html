@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Application Security</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
+ 
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../scripts/styles.css">
+</head>  
+    
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                     
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button> <a class="navbar-brand" href="../index.php">WAP Lab</a>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Start Learning<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Bypass Client Side Control</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">One more separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a href="https://www.linkedin.com/pub/yuhang-zhou/57/a54/859" target="_blank">About Author</a>
+                        </li>
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div> 
+                        <button type="submit" class="btn btn-default">
+                            Submit
+                        </button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>                
+            </nav>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            
+            <ol class="breadcrumb">
+              <li><a href="../index.php">Home</a></li>  
+              <li><a href="../view/access.html">Attack Access Control</a></li>  
+              <li class="active">Lab1: Unprotected Functionality</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="bg-info">
+            <p>In many cases of broken access controls, sensitive functionalities can be accessed by anyone who knows the relevant URL or function. You cannot assume the attacker cannot access them just because they don't know the URL or function names. The following is an examp0le.</p>
+                <p>In this lab, I will give you two sets of usernames and passwords. One is a general user: <b>Mark qwerty</b>, the other is an admin user:<b>admin admin</b>. By default the admin user have a greater access to functionalities. Here in this lab the user Mark can only view his own information after he logged in, while the admin user can view information from all users.</p> 
+                <p>When I create this lab, I first have wrote 2 functions called <b>userStat1()</b> and <b>userStat2()</b>, and I have included the two functions in source code line 14. a general user will user function userStat1() to display his own information on the right area on the page, while admin user will another function userStat2() to display all the users' information.</p>
+                <p>Your task is to figure out a way that you can display information of all users <b>WITHOUT</b> logging in as admin user.</p>
+            </div>        
+        </div>        
+    </div>
+    
+<div class="row" >
+    <div class="col-md-3" >        
+        <form class='form-horizontal' method='post' action='' id='login_form' style="border:1px solid darkgrey;padding:10px;width:300px">
+            <div class='control-group'>
+            <label class='control-label' for='username'>Username</label>
+            <div class='controls'>
+              <input type='text' id='username' placeholder='Username'></div></div>
+            <div class='control-group'>
+            <label class='control-label' for='password'>Password</label>
+            <div class='controls'>
+              <input type='password' id='password' placeholder='Password'>
+            </div></div><br>
+            <div id='msgbox' style="opacity:1 !important;"></div><br>            
+            <div class='control-group'>
+            <div class='controls'>
+              <input name='Submit' type='button' onclick='javascript:login()' value='Log in' class='btn btn-primary'/>
+            
+            </div></div><br>
+          </form>
+    </div>
+    
+    <div class="col-md-4" >  
+        <h4>Your information display here:</h4>        
+        <div id="display" class="alert alert-success" role="alert"><p> # | Name | email address | phone number | password </p> </div>
+    </div>
+</div>
+        
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Show Hint
+            </button>
+            <div class="collapse" id="collapseExample">
+              <div class="well">
+            <p>Sensitive data would be explored if you have unprotected functionality.</p>
+            <p>I am using Chrome browser for example, the other browsers act similarly. First press "F12" key to open the Developer Tools in a browser. Then navigate to console tab, where you can input commends. As we have included function userStat1() and userStat2() in this page. You can try to user commends:<code>userStat1();</code> or <code>userStat2();</code> in the console panel.</p>
+              </div>
+            </div>
+    
+        </div>
+    </div>
+
+<script>
+function login(){
+        $.ajax({
+            url : '../scripts/php/validation_3.php',
+            type : 'POST',
+            data : { user_name:$('#username').val(),password:$('#password').val() },
+        dataType:'json',
+        success : function(data) {             
+          if(data != 0){
+                        //console.log(data);
+                        $("#msgbox").fadeTo(200,1,function()
+                        { 
+                          $(this).html('Log in Successful!');
+                        });                       
+                        //window.location.replace("access_success1.html");
+                        if($('#username').val()=="admin"){
+                            userStat2();
+                        }else{
+                            userStat1();
+                        }
+            }
+            else{
+               $("#msgbox").fadeTo(200,1,function()
+                    { 
+                      $(this).html('Your login details are incorrect, try again.');
+                    });                 
+            }
+        }
+    })     
+}   
+
+</script>

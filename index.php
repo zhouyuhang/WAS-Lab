@@ -104,12 +104,10 @@
             <div class="jumbotron" style="background:url('./images/security_background.jpg') no-repeat fixed center;">
                 <div style="background-color:rgba(255,255,255,0.7);">
                 <h2>
-                    Hello, Welcome to the world of Web App Security(WAP)!
+                    Welcome to the world of Web App Security(WAP)!
                 </h2>
                 <p>
-                    This is Web App Security lab. You can learn about web application security vulnerabilities by 
-                    take part in various examples lists below. Your knowledge of web application security grows
-                    as you understand these vulnerabilities, it can help you to build more secure web applications.
+                    Join our Web App Security lab now! You can learn about web application security vulnerabilities by taking part in various interactive labs lists below. Your knowledge of web application security grows as you understand these vulnerabilities, which helps you to build more secure web applications.
                 </p>
                 </div>
                 <p>
@@ -134,24 +132,35 @@
         </div>
         <div class="col-md-4">
             <h2>
-                Heading
+                Attack Authentication
             </h2>
             <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                Authentication is the front line of defence an application. However there are some design flaws with authentication mechanisms. If broken, the protected functionality and sensitive data will be explored to attackers.
             </p>
             <p>
-                <a class="btn" href="#">View details »</a>
+                <a class="btn" href="./view/authentication.html">Learn More »</a>
             </p>
         </div>
         <div class="col-md-4">
             <h2>
-                Heading
+                Attack Access Control
             </h2>
             <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                Access Controls are critical defence mechanism in a application that make key decisions. And access Control vulnerabilities are conceptually simple: The application lets you do something you should not be able to.
             </p>
             <p>
-                <a class="btn" href="#">View details »</a>
+                <a class="btn" href="./view/access.html">Learn More »</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>
+                SQL Injection
+            </h2>
+            <p>
+                Because of how interpreted languages are executed, a family of vulnerabilities known as code injection arises. An attacker can use crafted input as program instruction to compromise the application.
+            </p>
+            <p>
+                <a class="btn" href="view/sql.html">Learn More »</a>
             </p>
         </div>
     </div>
