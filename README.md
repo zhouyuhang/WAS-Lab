@@ -1,4 +1,4 @@
-# WAP-Lab
+# WAS-Lab
 Web Application Security Lab
 
 Learn about Web Application Security via our various labs
