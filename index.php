@@ -25,99 +25,72 @@
                      
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                    </button> <a class="navbar-brand" href="#">WAP Lab</a>
+                    </button> <a class="navbar-brand" href="./index.php">WAS Lab <span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a>
                 </div>
                 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Start Learning<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Action</a>
+                                    <a href="./view/sql.html">SQL Injection</a>
+                                </li>                                
+                                <li>
+                                    <a href="./view/clientside.html">Bypass Client Side Control</a>
                                 </li>
                                 <li>
-                                    <a href="#">Another action</a>
+                                    <a href="./view/authentication.html">Attack Authentication</a>
                                 </li>
                                 <li>
-                                    <a href="#">Something else here</a>
-                                </li>
-                                <li class="divider">
+                                    <a href="./view/access.html">Attack Access Control</a>
                                 </li>
                                 <li>
-                                    <a href="#">Separated link</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">One more separated link</a>
+                                    <a href="./view/xss.html">Cross Site Scripting</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Resources</a>
+                            <a href="./view/faq.html">FAQ</a>
                         </li>
-                    </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
-                        </div> 
-                        <button type="submit" class="btn btn-default">
-                            Submit
-                        </button>
-                    </form>
+                    </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active">
                             <a href="https://www.linkedin.com/pub/yuhang-zhou/57/a54/859" target="_blank">About Author</a>
                         </li>
-                        <li>
-                            <a href="#">Link</a>
-                        </li>
-                        <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Another action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Something else here</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">Separated link</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
                 
-            </nav>
-            
-            <ol class="breadcrumb">
-              <li><a href="./index.php">Home</a></li>
-            </ol> 
+            </nav>        
+
             
             <div class="jumbotron" style="background:url('./images/security_background.jpg') no-repeat fixed center;">
-                <div style="background-color:rgba(255,255,255,0.7);">
-                <h2>
-                    Welcome to the world of Web App Security(WAP)!
-                </h2>
-                <p>
-                    Join our Web App Security lab now! You can learn about web application security vulnerabilities by taking part in various interactive labs lists below. Your knowledge of web application security grows as you understand these vulnerabilities, which helps you to build more secure web applications.
-                </p>
+                <div style="background-color:rgba(255,255,255,0.7);padding:10px;">
+                    <h2>
+                        Welcome to the world of Web App Security(WAS)!
+                    </h2>
+                    <p>
+                        Join our Web App Security lab now! You can learn about web application security vulnerabilities by taking part in various interactive labs. Your knowledge of web application security grows as you understand these vulnerabilities, which helps you to build more secure web applications.
+                    </p>                    
+                    <a class="btn btn-warning btn-lg" href="#start">Start !</a>
                 </div>
-                <p>
-                    <a class="btn btn-warning btn-large" href="#start">Start !</a>
-                </p>
+
             </div>
         </div>
     </div>
     <div class="row">
         <a name="start"></a> 
+        <div class="col-md-4">
+            <h2>
+                SQL Injection
+            </h2>
+            <p>
+                Injection attacks take advantage of the way how interpreted languages are executed. An attacker can use crafted input as program instruction to compromise the application.
+            </p>
+            <p>
+                <a class="btn btn1" href="view/sql.html">Learn More »</a>
+            </p>
+        </div>
         <div class="col-md-4">
             <h2>
                 Bypass Client Side Control
@@ -127,7 +100,7 @@
             HTML form features, client-side scripts, or browsers extention technologies.   
             </p>
             <p>
-                <a class="btn" href="./view/clientside.html">Learn More »</a>
+                <a class="btn btn1" href="./view/clientside.html">Learn More »</a>
             </p>
         </div>
         <div class="col-md-4">
@@ -138,7 +111,7 @@
                 Authentication is the front line of defence an application. However there are some design flaws with authentication mechanisms. If broken, the protected functionality and sensitive data will be explored to attackers.
             </p>
             <p>
-                <a class="btn" href="./view/authentication.html">Learn More »</a>
+                <a class="btn btn1" href="./view/authentication.html">Learn More »</a>
             </p>
         </div>
         <div class="col-md-4">
@@ -149,20 +122,20 @@
                 Access Controls are critical defence mechanism in a application that make key decisions. And access Control vulnerabilities are conceptually simple: The application lets you do something you should not be able to.
             </p>
             <p>
-                <a class="btn" href="./view/access.html">Learn More »</a>
+                <a class="btn btn1" href="./view/access.html">Learn More »</a>
             </p>
         </div>
         <div class="col-md-4">
             <h2>
-                SQL Injection
+                Cross Site Scripting
             </h2>
             <p>
-                Because of how interpreted languages are executed, a family of vulnerabilities known as code injection arises. An attacker can use crafted input as program instruction to compromise the application.
+                Today Cross Site Scripting(XSS) is often cited as the number-one security threat on the web. XSS attacks target on the users than the server, and they can carry out malicious actions to users.
             </p>
             <p>
-                <a class="btn" href="view/sql.html">Learn More »</a>
+                <a class="btn btn1" href="./view/xss.html">Learn More »</a>
             </p>
-        </div>
+        </div>        
     </div>
 </div>
 

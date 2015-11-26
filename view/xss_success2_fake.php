@@ -104,8 +104,8 @@
             
             <ol class="breadcrumb">
               <li><a href="../index.php">Home</a></li>  
-              <li><a href="../view/authentication.html">Attack Authentication</a></li>  
-              <li class="active">Lab2: Verbose Failure Messages</li>
+              <li><a href="../view/xss.html">Cross Site Scripting</a></li>  
+              <li class="active">Lab2: Fake an online bank</li>
             </ol>
         </div>
     </div>
@@ -113,95 +113,13 @@
     <div class="row">
         <div class="col-md-6">
             <div class="bg-info">
-            <p>A login form may require you to input several information, such as username, password, email, date of birth, etc. However, if the applications tells you which information is not correct, it will make the authentication weaker because the attacker will have less difficulty in guessing the information.</p>
-                <p>In this lab, you role is to play as an attacker and try to log in the system with the correct username, password and email. Start your guess from username to password to email. You will notice that if you get one field correct, the form will notify you that the other field is not correct.</p> 
-                <p>Start your guessing, good luck! If you need some hint, click <b>"Show Hint"</b> Below. </p>
+                Welcome <?php echo $_GET["name"]; ?><br>
+                <strong><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> ABC BANK</strong>
+                <p>This is the fake online bank.</p>
+                <a href='xss2.html'>Go back to previous page >></a>
             </div>        
         </div>        
     </div>
     
-<div class="row" >
-    <div class="col-md-6" >        
-<form class='form-horizontal' method='post' action='' id='login_form' style="border:1px solid darkgrey;padding:10px;width:300px">
-            <div class='control-group'>
-            <label class='control-label' for='username'>Username</label>
-            <div class='controls'>
-              <input type='text' id='username' placeholder='Username'></div></div>
-            <div class='control-group'>
-            <label class='control-label' for='password'>Password</label>
-            <div class='controls'>
-              <input type='password' id='password' placeholder='Password'>
-            </div></div>
-            <div class='control-group'>
-            <label class='control-label' for='email'>email</label>
-            <div class='controls'>
-              <input type='text' id='email' placeholder='Email'>
-            </div><br>
-            <div id='msgbox' style="opacity:1 !important;"></div><br>
-            </div>
-            <div class='control-group'>
-            <div class='controls'>
-              <input name='Submit' type='button' onclick='javascript:login()' value='Log in' class='btn btn-primary'/>
-            
-            </div></div><br>
-          </form>
 
-    </div>
-</div>
         
-    <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Show Hint
-            </button>
-            <div class="collapse" id="collapseExample">
-              <div class="well">
-            <p>To make it easier for you, here are the potential correct value for each of these fields:</p> 
-            <p>Username:<b>Alice, Alex, Tom, Mark, Jenny</b></p> 
-            <p>Password:<b>waplab, 12345678, qwerty, abc123, 111111, monkey, 12345</b></p>
-            <p>email:<b>alice@hotmail.com, tom@gmail.com, mark@hotmail.com, mark@gmail.com, jenny@hotmail.com </b></p>
-              </div>
-            </div>
-    
-        </div>
-    </div>
-
-<script>
-function login()
-{
-    if($('#username').val() != 'Mark'){
-        $("#msgbox").html("username is not right");
-    }else if($('#password').val() != 'qwerty'){
-        $("#msgbox").html("password is not right");
-    }else if($('#email').val() != 'mark@hotmail.com'){
-        $("#msgbox").html("email is not right");
-    }else{
-        $.ajax({
-            url : '../scripts/php/validation_2.php',
-            type : 'POST',
-            data : { user_name:$('#username').val(),password:$('#password').val(),email:$('#email').val()
-        },
-        dataType:'json',
-        success : function(data) { 
-            console.log(data);
-          if(data != 0){
-                        console.log(data);
-                        $("#msgbox").fadeTo(200,0.1,function()
-                        { 
-                          $(this).html('Logging in...');
-                        });
-                        window.location.replace("authentication_success2.html");
-            }
-            else{
-               /*$("#msgbox").fadeTo(200,0.1,function()
-                    { 
-                      $(this).html('Your login details are incorrect');
-                    }); 
-                */
-            }
-        }
-    });
-        
-    }
-}
-</script>

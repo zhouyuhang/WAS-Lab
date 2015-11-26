@@ -116,6 +116,8 @@
             <div class="bg-info">
             <p>In this lab, we are going to use some crafted words to bypass this login system.</p>
             <p>We already know that the administrator has username <b>admin</b>, but we don't know the password.</p>
+            <p>And we have already known that the sql query is <code>select name,password from user where name='$username' and password='$password'</code>, where the username and password are the values you input in the form.</p>
+            <p>Your task in this lab is to bypass the login form with MySQL injection crafted input.</p>
             </div>        
         </div>        
     </div>
@@ -123,13 +125,15 @@
 <div class="row" >
     <div class="col-md-3" >        
         <form class='form-horizontal' method='post' action='' id='login_form' style="border:1px solid darkgrey;padding:10px;width:400px">
+            <h4>Lab1: Bypassing a Login(1)</h4>
             <div class='control-group'>
             <label class='control-label'>Username :</label>
                 <input type="text" name="username" id="username" class="form-control" required autofocus/></div>
             <div class='control-group'>
             <label class='control-label'>Password :</label>
             <input type="password" name="password" id="password" class="form-control" required/><br>
-            </div>           
+            </div>
+            <div id='msgbox' style="opacity:1 !important;"></div><br> 
             <div class='control-group'>
             <div class='controls'>
               <input name='Submit' type='button' onclick='javascript:login()' value='Log in' class='btn btn-primary'/>            
@@ -145,8 +149,11 @@
             </button>
             <div class="collapse" id="collapseExample">
               <div class="well">
-            <p>In this lab, we are going to use some crafted words to bypass this login system.</p>
-            <p>We already know that the administrator has username <b>admin</b>, but we don't know the password.</p>
+            <p>You can input <code>admin</code> in the username field; and input <code>wrongpassword' OR 'a'='a</code> in the password field.</p>
+            <p>In this case, the query generated will be <br><code>SELECT * FROM users WHERE username='admin' AND password='wrongpassword' OR 'a'='a'</code></p>
+            <p><code>username='admin'</code> is true because this is the correct username, <code>password='wrongpassword' OR 'a'='a'</code> is also true because the second part of the OR condition is true, so even you don't know the correct password, you are able to bypass the login form with admin account.</p>
+            <p>Another solution is to input <code>admin'#</code> , and # will comment all the rest query after it. The entire query will be <br><code>SELECT * FROM users WHERE username='admin'#' AND password='$password'</code></p>
+            <p>A way to prevent sql injection is to correctly handle(escape) the input value before using them in the sql query. You can use the php function real_escape_string() to escape strings, <a target="_blank" href="http://php.net/manual/en/mysqli.real-escape-string.php">read more about this function</a>.</p>
               </div>
             </div>    
         </div>

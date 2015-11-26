@@ -10,11 +10,10 @@ p{
     padding:0px 15px 0px 15px;  
 }
 
-.bg-info{
-    padding: 10px 0 10px 0;
+.row{
     margin-bottom: 20px;
 }
 
-.row{
-    margin-bottom: 20px;
+.btn1{
+    background:#BCE8F1;
 }
