@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
  
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
     <link rel="stylesheet" href="../scripts/styles.css">
@@ -77,35 +78,34 @@
             
             <ol class="breadcrumb">
               <li><a href="../index.php">Home</a></li>  
-              <li><a href="../view/clientside.html">Bypass Client Side Controls</a></li>  
-              <li class="active">Lab2: HTML Form length limits</li>
+              <li><a href="../view/tools.html">Toolkits for Developers/Hackers</a></li>  
+              <li class="active">Lab2: Use the "Network" to view HTTP requests</li>
             </ol>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-md-6">
-            <div class="bg-info">            
-            <p>
-            Let's say the application want the user to have limitation on the quantity of iPhone 6s they can buy. </p>
-            <p>In this HTML form, the input field for quantity is  <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>Here the browser assume that the user can buy less than 10 as the "maxlength" of quantity field is 1, so the user can only input any value from 0 to 9.</p>
-            <p>
-            In this lab, your task is to find a way to buy more than 10 iPhone 6s at a time(for example 20 iPhone 6s).</p>
-            <p>If you don't know how to hack this application, click "Show Hint" button below.</p>
-            </div>
-            <form class="form1" method="post" action="../scripts/php/clientside_1.php">
-            Product: iPhone 6s<br/>
-            Price: 699 <br/>
-            <label for="quantity">Quantity: (less than 10)</label>
-            <input type="text" class="form-control" name="quantity" maxlength="1">
-            <br/>
-            <input type="hidden" name="price" value="699">
-            <input type="submit" class="btn btn-success" value="Buy">
-            </form> <br>
-            <div class="alert alert-success" role="alert" id="purchase">You can buy iPhone 6s here.</div>            
+        <div class="col-md-12">
+            <div class="bg-info">
+            <p>After the essential web browser, the most useful item in your toolkit when
+attacking a web application is an intercepting proxy.Over the years, the humble intercepting proxy has evolved into a number of highly functional tool suites, each containing several interconnected tools designed to facilitate the common tasks involved in attacking a web application.Several testing suites are popular: Fiddler, Burp Suite, WebScarab, Paros, Zed, Attack Proxy, Andiparos, CAT, Charles.</p>
+            <p>Fidder is one of the most popular one, it is kind of like the developer tools network, but much more powerful with plenty features. When you are running Fiddler, monitors all the internet sessions you are running and shows the request and response details.</p>
+            <p>One of the cool feature of Fidder is AutoResponder. It enable fidder to respond to requests using local offline content, instead of actually going out to hitting the server. </p>
+            <p>You can download Fidder4 from <a href="http://www.telerik.com/fiddler" target="_blank">Here</a>.</p>
+            <p>You will see screen shot like this:<img src="../images/tools4_2.jpg" width="100%" class="img-thumbnail"></p>
+            <p>Your task in this lab is to use the AutoResponder feature of Fiddler. You can use AutoResponder to replace the image below with an image from your local machine. </p>
+            </div>        
         </div>        
     </div>
+    
+<div class="row">
+    <div class="col-md-8" >  
+        <p>Refresh the current page, then go to Fiddler. Find the session with url <b>/images/change.jpg</b>, open the AutoResponder tab on the right side of Fiddler. Then check to enable "Enable rules". Drag and drop the session of /images/change.jpg to the filed under the AutoResponder field. Then at the bottom you can see "Rule Editor", select the second dropdown menu and "Find a file" to select an local image, use any image from you local machine as you like. Click "Save" to save the changes. Refresh the page on the browser, then you can see the original image has been replaced by your local image!</p>
+        <img src="../images/security.jpg">
+    </div> 
 
+</div>
+        
     <div class="row">
         <div class="col-md-6">
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -113,37 +113,9 @@
             </button>
             <div class="collapse" id="collapseExample">
               <div class="well">
-                In order to buy more than 10 products at a time, you need to modify the quantity input field. One suggest way is to use the browser's developer tools("Shortkey F12"). Mouse Right click the form on the web page, you will see the source code at developer tools. Find the line of <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>, double click on it and delete the maxlength="1". <br>
-                  Now buy the product again. Bingo! You can buy any quantity of products now.
+            <p>Fidder can be used for many functions, for example, web debugging ,performance testing, HTTP/HTTPS traffic recording, web session manipulation, security testing, etc. You can find more info at http://www.telerik.com/fiddler or watch youtube tutorials.</p>
               </div>
             </div>
     
         </div>
     </div>
-
-<script>
-    $('form').submit(function(event){
-        //get the form data
-        var formData = {
-            'quantity': $('input[name=quantity]').val(),
-            'price':    $('input[name=price]').val()
-        };
-        //process the form with ajax
-        $.ajax({
-            type:'POST',
-            url:"../scripts/php/clientside_1.php",
-            data:formData,
-            dataType:'json',
-            encode:true
-        })
-        .done(function(data){
-              console.log(data);
-                document.getElementById("purchase").innerHTML = 
-                    "You have purchase " + $('input[name=quantity]').val() +
-                    " iPhone 6s at the price of $" +  $('input[name=price]').val()+
-                    ", Thank you!";
-        });
-        //stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-    </script>

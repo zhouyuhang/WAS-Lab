@@ -77,73 +77,51 @@
             
             <ol class="breadcrumb">
               <li><a href="../index.php">Home</a></li>  
-              <li><a href="../view/clientside.html">Bypass Client Side Controls</a></li>  
-              <li class="active">Lab2: HTML Form length limits</li>
+              <li class="active">Toolkits for Developers/Hackers</li>
             </ol>
         </div>
-    </div>
-    
-    <div class="row">
+        
         <div class="col-md-6">
-            <div class="bg-info">            
-            <p>
-            Let's say the application want the user to have limitation on the quantity of iPhone 6s they can buy. </p>
-            <p>In this HTML form, the input field for quantity is  <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>Here the browser assume that the user can buy less than 10 as the "maxlength" of quantity field is 1, so the user can only input any value from 0 to 9.</p>
-            <p>
-            In this lab, your task is to find a way to buy more than 10 iPhone 6s at a time(for example 20 iPhone 6s).</p>
-            <p>If you don't know how to hack this application, click "Show Hint" button below.</p>
+            <div class="bg-info">
+            <blockquote><p>I'm going to use all my tools, my God-given ability, and make the best life I can with it.-LeBron James</p></blockquote>
+            <p>From the most recent stat below, Google Chrome, Firefox, and Internet Explorer are the most used browsers today. (Cited from www.w3schools.com)</p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>2015</th>
+                    <th>Chrome</th>
+                    <th>IE</th>
+                    <th>Firefox</th>
+                    <th>Safari</th>
+                    <th>Opera</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>October</td>
+                    <td>66.5 %</td>
+                    <td>6.9 %</td>
+                    <td>20.0 %</td>
+                    <td>3.8 %</td>
+                    <td>1.4 %</td>
+                  </tr>                  
+                </tbody>
+            </table>
+            <p>Almost every browser has provided a very useful developer tools, and they all have similar functionalities. You can view the source code, the database, the network, write commend in cosole, etc. Both developers or hackers can make use of these tools to get more information and malipulate the web applications. We have make use of some of the functions in our previous lab, here we will give a more detailed introduction to some functions.</p>
+            <p>A more powerful tool is the Integrated Testing Suites, for example Fiddler. They are disigned for many functions, for example, web debugging ,performance testing, HTTP/HTTPS traffic recording, web session manipulation, security testing, etc.</p>
+            
             </div>
-            <form class="form1" method="post" action="../scripts/php/clientside_1.php">
-            Product: iPhone 6s<br/>
-            Price: 699 <br/>
-            <label for="quantity">Quantity: (less than 10)</label>
-            <input type="text" class="form-control" name="quantity" maxlength="1">
-            <br/>
-            <input type="hidden" name="price" value="699">
-            <input type="submit" class="btn btn-success" value="Buy">
-            </form> <br>
-            <div class="alert alert-success" role="alert" id="purchase">You can buy iPhone 6s here.</div>            
-        </div>        
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              Show Hint
-            </button>
-            <div class="collapse" id="collapseExample">
-              <div class="well">
-                In order to buy more than 10 products at a time, you need to modify the quantity input field. One suggest way is to use the browser's developer tools("Shortkey F12"). Mouse Right click the form on the web page, you will see the source code at developer tools. Find the line of <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>, double click on it and delete the maxlength="1". <br>
-                  Now buy the product again. Bingo! You can buy any quantity of products now.
-              </div>
-            </div>
-    
+            <div class="list-group">
+              <a href="#" class="list-group-item active">
+                Experiments: Toolkits for Developers/Hackers
+              </a>
+              <a href="./tools_1.html" class="list-group-item">Lab1: Use the "Elements" for page editing </a>
+              <a href="./tools_2.html" class="list-group-item">Lab2: Use the "Network" to view HTTP requests</a>
+              <a href="./tools_3.html" class="list-group-item">Lab3: Use the Console panel</a>
+              <a href="./tools_4.html" class="list-group-item">Lab4: AutoResponder of Fiddler</a>
+            </div>         
         </div>
     </div>
+    
+</div>
 
-<script>
-    $('form').submit(function(event){
-        //get the form data
-        var formData = {
-            'quantity': $('input[name=quantity]').val(),
-            'price':    $('input[name=price]').val()
-        };
-        //process the form with ajax
-        $.ajax({
-            type:'POST',
-            url:"../scripts/php/clientside_1.php",
-            data:formData,
-            dataType:'json',
-            encode:true
-        })
-        .done(function(data){
-              console.log(data);
-                document.getElementById("purchase").innerHTML = 
-                    "You have purchase " + $('input[name=quantity]').val() +
-                    " iPhone 6s at the price of $" +  $('input[name=price]').val()+
-                    ", Thank you!";
-        });
-        //stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-    </script>

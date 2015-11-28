@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
  
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
     <link rel="stylesheet" href="../scripts/styles.css">
@@ -77,35 +78,32 @@
             
             <ol class="breadcrumb">
               <li><a href="../index.php">Home</a></li>  
-              <li><a href="../view/clientside.html">Bypass Client Side Controls</a></li>  
-              <li class="active">Lab2: HTML Form length limits</li>
+              <li><a href="../view/tools.html">Toolkits for Developers/Hackers</a></li>  
+              <li class="active">Lab1: Use the "Elements" for page editing</li>
             </ol>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-md-6">
-            <div class="bg-info">            
-            <p>
-            Let's say the application want the user to have limitation on the quantity of iPhone 6s they can buy. </p>
-            <p>In this HTML form, the input field for quantity is  <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>Here the browser assume that the user can buy less than 10 as the "maxlength" of quantity field is 1, so the user can only input any value from 0 to 9.</p>
-            <p>
-            In this lab, your task is to find a way to buy more than 10 iPhone 6s at a time(for example 20 iPhone 6s).</p>
-            <p>If you don't know how to hack this application, click "Show Hint" button below.</p>
-            </div>
-            <form class="form1" method="post" action="../scripts/php/clientside_1.php">
-            Product: iPhone 6s<br/>
-            Price: 699 <br/>
-            <label for="quantity">Quantity: (less than 10)</label>
-            <input type="text" class="form-control" name="quantity" maxlength="1">
-            <br/>
-            <input type="hidden" name="price" value="699">
-            <input type="submit" class="btn btn-success" value="Buy">
-            </form> <br>
-            <div class="alert alert-success" role="alert" id="purchase">You can buy iPhone 6s here.</div>            
+        <div class="col-md-12">
+            <div class="bg-info">
+            <p>When I am developing websites, I have found the browser's developer tools to be very useful and helpful to my work. As Chrome is the most popular browser recently, we will use chrome developer tools for our showcases. For other browsers, they have the similar functionalities.</p>
+            <p>To open the develop tools, you can go to Menu -> More tools -> Developer tools, or press F12 function key. And you will see something like this:<img src="../images/tools1_1.jpg" width="100%" class="img-thumbnail"></p>
+            <p>On the left half of this tab, you see the source html code, including the head and body, usually the javascripts are included in the head or written at the end of body. If you want to see the code of a certain element, simply mouse right click on the element then click "Inspect Element". You can try that with the green button below.</p>
+            <p>On the right half of this tab, there are css styles for each element, and the computed css for it, and the properties also provides many useful information to you. </p>
+            <p>For this lab, your are going to use the developer tools to finish two tasks. First try to change the text of the following button to "Hello World" with html on browser, second change the button color to red with css.</p>
+            </div>        
         </div>        
     </div>
+    
+<div class="row" >
+    <div class="col-md-3" >        
+        <!-- Indicates a successful or positive action -->
+<button type="button" class="btn btn-success">Change my style and text as you like!</button>
+    </div> 
 
+</div>
+        
     <div class="row">
         <div class="col-md-6">
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -113,8 +111,8 @@
             </button>
             <div class="collapse" id="collapseExample">
               <div class="well">
-                In order to buy more than 10 products at a time, you need to modify the quantity input field. One suggest way is to use the browser's developer tools("Shortkey F12"). Mouse Right click the form on the web page, you will see the source code at developer tools. Find the line of <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>, double click on it and delete the maxlength="1". <br>
-                  Now buy the product again. Bingo! You can buy any quantity of products now.
+            <p>To do the first, first right click the green button and click "Inspect element". Then you see the html code of this button, double click on the original text and change it to "Hello World". To do the second task, press the "+" sign near the css styles area on the right half of the tab, then input code <code>background-color: red;</code></p>
+            <p>The changes only change the bahavior in your browser, not others. But this function is quite useful as you can see as you edit, so you can save a lot of not having to swap between the web application development environment and the browser.</p>
               </div>
             </div>
     
@@ -122,28 +120,34 @@
     </div>
 
 <script>
-    $('form').submit(function(event){
-        //get the form data
-        var formData = {
-            'quantity': $('input[name=quantity]').val(),
-            'price':    $('input[name=price]').val()
-        };
-        //process the form with ajax
+function login(){
         $.ajax({
-            type:'POST',
-            url:"../scripts/php/clientside_1.php",
-            data:formData,
-            dataType:'json',
-            encode:true
-        })
-        .done(function(data){
-              console.log(data);
-                document.getElementById("purchase").innerHTML = 
-                    "You have purchase " + $('input[name=quantity]').val() +
-                    " iPhone 6s at the price of $" +  $('input[name=price]').val()+
-                    ", Thank you!";
-        });
-        //stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-    </script>
+            url : '../scripts/php/validation_3.php',
+            type : 'POST',
+            data : { user_name:$('#username').val(),password:$('#password').val() },
+        dataType:'json',
+        success : function(data) {             
+          if(data != 0){
+                        //console.log(data);
+                        $("#msgbox").fadeTo(200,1,function()
+                        { 
+                          $(this).html('Log in Successful!');
+                        });                       
+                        //window.location.replace("access_success1.html");
+                        if($('#username').val()=="admin"){
+                            userStat2();
+                        }else{
+                            userStat1();
+                        }
+            }
+            else{
+               $("#msgbox").fadeTo(200,1,function()
+                    { 
+                      $(this).html('Your login details are incorrect, try again.');
+                    });                 
+            }
+        }
+    })     
+}   
+
+</script>

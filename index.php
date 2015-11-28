@@ -35,19 +35,27 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="./view/sql.html">SQL Injection</a>
-                                </li>                                
+                                </li>
+                                <li class="divider"></li>                               
                                 <li>
                                     <a href="./view/clientside.html">Bypass Client Side Control</a>
                                 </li>
+                                <li class="divider"></li>
                                 <li>
                                     <a href="./view/authentication.html">Attack Authentication</a>
                                 </li>
+                                <li class="divider"></li>
                                 <li>
                                     <a href="./view/access.html">Attack Access Control</a>
                                 </li>
+                                <li class="divider"></li>
                                 <li>
                                     <a href="./view/xss.html">Cross Site Scripting</a>
                                 </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="./view/tools.html">Toolkits for Developers/Hackers</a>
+                                </li>                                
                             </ul>
                         </li>
                         <li>
@@ -135,19 +143,17 @@
             <p>
                 <a class="btn btn1" href="./view/xss.html">Learn More »</a>
             </p>
+        </div> 
+        <div class="col-md-4">
+            <h2>
+                Toolkits for Developers/Hackers
+            </h2>
+            <p>
+                Some attacks on web applications can be performed on browsers, others require you to use additional tools. A more powerful tool is the web application scanner.
+            </p>
+            <p>
+                <a class="btn btn1" href="./view/tools.html">Learn More »</a>
+            </p>
         </div>        
     </div>
 </div>
-
-<script type="text/javascript">
-$.ajax({
-    url:'scripts/php/test.php',
-    type:'POST',
-    data:{},
-    dataType:'json',
-    success: function(data){
-            console.log(data);
-        }
-    
-});
-</script>

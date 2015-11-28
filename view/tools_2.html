@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="../lib/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
  
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
     <link rel="stylesheet" href="../scripts/styles.css">
@@ -69,6 +70,7 @@
                     </ul>
                 </div>                
             </nav>        
+            
         </div>
     </div>
     
@@ -77,35 +79,39 @@
             
             <ol class="breadcrumb">
               <li><a href="../index.php">Home</a></li>  
-              <li><a href="../view/clientside.html">Bypass Client Side Controls</a></li>  
-              <li class="active">Lab2: HTML Form length limits</li>
+              <li><a href="../view/tools.html">Toolkits for Developers/Hackers</a></li>  
+              <li class="active">Lab2: Use the "Network" to view HTTP requests</li>
             </ol>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-md-6">
-            <div class="bg-info">            
-            <p>
-            Let's say the application want the user to have limitation on the quantity of iPhone 6s they can buy. </p>
-            <p>In this HTML form, the input field for quantity is  <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>Here the browser assume that the user can buy less than 10 as the "maxlength" of quantity field is 1, so the user can only input any value from 0 to 9.</p>
-            <p>
-            In this lab, your task is to find a way to buy more than 10 iPhone 6s at a time(for example 20 iPhone 6s).</p>
-            <p>If you don't know how to hack this application, click "Show Hint" button below.</p>
-            </div>
-            <form class="form1" method="post" action="../scripts/php/clientside_1.php">
+        <div class="col-md-12">
+            <div class="bg-info">
+            <p>First open your develop tools and activate the "Network" tab, make sure the Network recording is on: the icon is in red color on the left top of the tab. Then navigate to our WAS lab home, or any other website you like, then you will see something like this:<img src="../images/tools2_1.jpg" width="100%" class="img-thumbnail"></p>
+            <p>This chart shows you there are totally 9 requests and how fast they have been answered by the server, and whether the request is success(200) or something else. It shows the types of these requests, there are document, javascript, css, font, etc. It also shows the Initiator, size and time for these request.</p>
+            <p>If you click on the names of each request, you can see the HTTP Request Headers and Response Headers.</p>
+            <p>In this lab, I reuse one of the prvious lab from "Bypass clientside control". The form send a simple request to the server to help you buy iPhone. Your task is to look at the HTTP header information. Think what is the request file sending to? What is the request method? What data have been sent with the request? What is the server? And what is the response?</p>
+            </div>        
+        </div>        
+    </div>
+    
+<div class="row" >
+    <div class="col-md-4" >        
+        <form class="form1" method="post" action="../scripts/php/clientside_1.php">
             Product: iPhone 6s<br/>
             Price: 699 <br/>
-            <label for="quantity">Quantity: (less than 10)</label>
-            <input type="text" class="form-control" name="quantity" maxlength="1">
+            <label for="quantity">Quantity: (Input the quantity here)</label>
+            <input type="text" class="form-control" name="quantity">
             <br/>
             <input type="hidden" name="price" value="699">
             <input type="submit" class="btn btn-success" value="Buy">
             </form> <br>
-            <div class="alert alert-success" role="alert" id="purchase">You can buy iPhone 6s here.</div>            
-        </div>        
-    </div>
+        <div class="alert alert-success" role="alert" id="purchase">You can buy iPhone 6s here.</div>            
+    </div> 
 
+</div>
+        
     <div class="row">
         <div class="col-md-6">
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -113,8 +119,7 @@
             </button>
             <div class="collapse" id="collapseExample">
               <div class="well">
-                In order to buy more than 10 products at a time, you need to modify the quantity input field. One suggest way is to use the browser's developer tools("Shortkey F12"). Mouse Right click the form on the web page, you will see the source code at developer tools. Find the line of <code>&lt;input type="text" name="quantity" maxlength="1"&gt;</code>, double click on it and delete the maxlength="1". <br>
-                  Now buy the product again. Bingo! You can buy any quantity of products now.
+            <p>To do this lab, first open the developer tools and go to Network. Then submit the form with some quantity. Then you can see the request is sent to /scripts/php/clientside_1.php.  Check the Headers, it shows the Request Method is POST; the Form Data "quantity:1 price:699" has been sent with the request; The server is Apache/2.4.9 (Win64) PHP/5.5.12; The response is "true", which means your purchase is successful.</p>
               </div>
             </div>
     
